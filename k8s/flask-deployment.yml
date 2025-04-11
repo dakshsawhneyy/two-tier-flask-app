@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  labels:
+    app: flask
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask-app
+        image: dakshsawhneyy/two-tier-app
+        ports:
+        - containerPort: 5000
+        env:
+          - name: MYSQL_HOST
+            value: "mysql"
+          - name: MYSQL_USER
+            value: "root"
+          - name: MYSQL_PASSWORD
+            value: "admin"
+          - name: MYSQL_DB
+            value: "myDb"
+
+
+
